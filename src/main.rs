@@ -128,20 +128,11 @@ fn main() -> Result<(), Box<dyn Error>> {
                         is_valid_pubkey = is_valid_pubkey_hex;
                     } else {
                         for cur_vanity_npub in vanity_npubs_ts.iter() {
-                            // 341,200 @ 70226s
-                            let mut is_valid_pubkey_bech32: bool = false;
-                            match bech_key.get(5..5+cur_vanity_npub.len()) {
-                                Some(npub_substr) => if npub_substr == cur_vanity_npub {is_valid_pubkey_bech32 = true},
-                                None => continue,
-                            }
-
-                            // 332,174 @ 48961
-                            // let is_valid_pubkey_bech32 = bech_key.as_str()[5..5+cur_vanity_npub.len()] == *cur_vanity_npub.as_str();
-
-                            // 334,205 @ 25411s
-                            // let is_valid_pubkey_bech32 = bech_key.starts_with(
-                            //     (String::from("npub1") + cur_vanity_npub.as_str()).as_str(),
-                            // );
+                           let mut is_valid_pubkey_bech32: bool = false;
+                           match bech_key.get(5..5+cur_vanity_npub.len()) {
+                               Some(npub_substr) => if npub_substr == cur_vanity_npub {is_valid_pubkey_bech32 = true},
+                               None => continue,
+                           }
 
                             // only valid if both options are valid
                             // it one of both were not required, then it's considered valid
