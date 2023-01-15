@@ -122,7 +122,7 @@ fn main() -> Result<(), Box<dyn Error>> {
 
                     for cur_vanity_npub in vanity_npubs_ts.iter() {
                         match bech_key.get(5..5+cur_vanity_npub.len()) {
-                            Some(npub_substr) => if npub_substr == cur_vanity_npub {is_valid_pubkey_bech32 = true},
+                            Some(npub_substr) => if npub_substr == cur_vanity_npub {is_valid_pubkey = true},
                             None => continue,
                         }
 
